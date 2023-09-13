@@ -47,6 +47,9 @@ class Bank(User):
         else:
             print("Error")
 
+
+    
+
 alex_t = Bank(600, "Alex", "Tkachenko", "16/03/2000")
 alex_t.person_details()
 
