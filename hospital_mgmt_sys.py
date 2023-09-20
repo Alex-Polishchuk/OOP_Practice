@@ -23,14 +23,21 @@ class Staff():
         #takes all the above and adds it to SQL db 
         pass
 
+    def remove_staff(self, fname, lname, role, department):
+        pass
+
 class Patient():
 
     def __init__(self, fname, lname, department):
+        self.fname = fname
+        self.lname = lname
+        self.department = department
+
+    def add_patient (self, fname, lname, department):
         pass
 
-    def add_patient (self, fname, lname, department)
+    def remove_patient(self, fname, lname, deaprtment):
         pass
-
 class Appointment():
 
     def __init__(self, time, date, department, doctor):
@@ -40,3 +47,5 @@ class Appointment():
         self.department = department
         self.doctor = doctor
 
+    def book_appt(self, time, date, department, doctor):
+        pass
