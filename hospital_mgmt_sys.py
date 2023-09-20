@@ -28,12 +28,15 @@ class Patient():
     def __init__(self, fname, lname, department):
         pass
 
+    def add_patient (self, fname, lname, department)
+        pass
 
 class Appointment():
 
-    def __init__(self, time, date, department):
+    def __init__(self, time, date, department, doctor):
 
         self.time = time
         self.date = date
         self.department = department
+        self.doctor = doctor
 
