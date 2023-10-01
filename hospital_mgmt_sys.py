@@ -2,15 +2,13 @@
 #First goal: track who is coming in and out of hospital (manage appointment)
 #Second goal: manage doctors and nurses
 #Thrid goal: manage patient
-import sqlite3
+import pandas as pd
 
-#Creating connection to sql database
-conn = sqlite3.connect('staff_detail.db')
-cursor = conn.cursor()
+#patient data dataframe
+patient_data = pd.DataFrame(columns=["ID", "First_name", "Last_name"])
+print(patient_data)
 
-#WRITE CHAGNES HERE
-conn.commit()
-conn.close()
+
 class Staff():
 
     def __init__(self, fname, lname, role, department):
@@ -28,13 +26,14 @@ class Staff():
 
 class Patient():
 
-    def __init__(self, fname, lname, department):
+    def __init__(self, fname, lname, id):
         self.fname = fname
         self.lname = lname
-        self.department = department
+        self.id = id
 
-    def add_patient (self, fname, lname, department):
-        pass
+    def add_patient (self, fname, lname, id):
+        new_data = {'ID': id, 'First_name': fname, 'Last_name':lname }
+        patient_data.loc[len(patient_data)] = new_data
 
     def remove_patient(self, fname, lname, deaprtment):
         pass
@@ -49,3 +48,7 @@ class Appointment():
 
     def book_appt(self, time, date, department, doctor):
         pass
+
+new_P = Patient('Alex', 'Tkachenko', 1000)
+new_P.add_patient('Alex', 'Tkachenko', 1000)
+print(patient_data)
