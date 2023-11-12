@@ -10,7 +10,8 @@ print(patient_data)
 
 
 class Staff():
-
+    
+    #creating a staff class
     def __init__(self, fname, lname, role, department):
         self.fname = fname
         self.lname = lname
@@ -18,7 +19,6 @@ class Staff():
         self.department = department
 
     def add_staff(self, fname, lname, role, department):
-        #takes all the above and adds it to SQL db 
         pass
 
     def remove_staff(self, fname, lname, role, department):
