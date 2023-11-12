@@ -3,11 +3,16 @@
 #Second goal: manage doctors and nurses
 #Thrid goal: manage patient
 import pandas as pd
+from datetime import datetime
 
-#patient data dataframe
-patient_data = pd.DataFrame(columns=["ID", "First_name", "Last_name"])
+now = datetime.now()
+date_time_str = now.strftime("%d-%m-%Y %H:%M:%S")
+
+patient_data = pd.read_csv("patient.csv")
+staff_data = pd.read_csv("staff.csv")
+
 print(patient_data)
-
+print(staff_data)
 
 class Staff():
     
@@ -49,6 +54,6 @@ class Appointment():
     def book_appt(self, time, date, department, doctor):
         pass
 
-new_P = Patient('Alex', 'Tkachenko', 1000)
-new_P.add_patient('Alex', 'Tkachenko', 1000)
+#new_P = Patient('Alex', 'Tkachenko', 1000)
+#new_P.add_patient('Alex', 'Tkachenko', 1000)
 print(patient_data)
