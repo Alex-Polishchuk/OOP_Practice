@@ -1,3 +1,5 @@
-fname, lname, role, department
-Holly, Hillsley, Lover, Beauty
-ben, nguyen, doctor, general
+name, role, department, ID
+Holly Hillsley, Lover, Beauty,91001
+ben nguyen, doctor, general,91002
+Sean Strick,Head Doctor, psychiatric,91003
+Brando Tye,Physio, Physiotherapy,1004
