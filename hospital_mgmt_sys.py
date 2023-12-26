@@ -2,9 +2,6 @@ import pandas as pd
 from datetime import datetime
 import csv
 
-patient_data = pd.read_csv("patient.csv")
-staff_data = pd.read_csv("staff.csv")
-
 class Staff():
     
     #creating a staff class
@@ -16,6 +13,7 @@ class Staff():
     def add_staff(self):
         #function which adds staff to file containing staff data
 
+        #opening file containing staff data
         with open ('staff.csv', mode='a', newline='\n') as file:
             
             #create a csv writer
@@ -38,21 +36,25 @@ class Staff():
             reader_obj = csv.reader(file)
 
             for row in reader_obj:
-                iterr_ID = (row[3])
+                iterr_ID = (row[0])
             
                 if staff_ID_input == iterr_ID:
-                    print(iterr_ID, staff_ID_input)
-                    print(type(iterr_ID))
-                    print(type(staff_ID_input))
+                #checking if the input has found match in the list
+
                     match_ID = True
                     print("Match Found")
+                    
+                    df = pd.read_csv('staff.csv', index_col='ID')
+                    df = df.drop(int(iterr_ID))
+                    df.to_csv('staff.csv', index=True)
                     break
-                else:
-                    print("No match found")
+            else:
+                print("No match found in records")
 
 
 class Patient():
 
+    #initialising patient class
     def __init__(self, name, id):
         self.name = name
         self.id = id
@@ -70,8 +72,31 @@ class Patient():
 
             print('Patient data succesfully appended')
 
-    def remove_patient(self, fname, lname, deaprtment):
-        pass
+    def remove_patient(self):
+        
+         #function to remove particular staff member based on id
+        patient_ID_input = str(input("Please input the patient ID number you wish to remove: "))
+        match_ID = False
+            
+        with open('patient.csv', mode='r') as file:
+            
+            reader_obj = csv.reader(file)
+
+            for row in reader_obj:
+                iterr_ID = (row[0])
+            
+                if patient_ID_input == iterr_ID:
+                #checking if the input has found match in the list
+
+                    match_ID = True
+                    print("Match Found")
+                    
+                    df = pd.read_csv('patient.csv', index_col='ID')
+                    df = df.drop(int(iterr_ID))
+                    df.to_csv('patient.csv', index=True)
+                    break
+            else:
+                print("No match found in records")
 class Appointment():
 
     def __init__(self, time_start, time_finish, date, staff_ID, patient_ID):

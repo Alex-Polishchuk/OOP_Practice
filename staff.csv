@@ -1,5 +1,3 @@
-name, role, department, ID
-Holly Hillsley, Lover, Beauty,91001
-ben nguyen, doctor, general,91002
-Sean Strick,Head Doctor, psychiatric,91003
-Brando Tye,Physio, Physiotherapy,91004
+ID,name, role, department
+91001,Holly Hillsley, Lover, Beauty
+91002,ben nguyen, doctor, general
