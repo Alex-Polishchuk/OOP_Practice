@@ -1,5 +1,6 @@
 import pandas as pd
 from datetime import datetime
+import calendar
 import csv
 
 class Staff():
@@ -106,9 +107,55 @@ class Appointment():
         self.staff_ID = staff_ID
         self.patient_ID = patient_ID
 
-    def book_appt(self, time, date, department, doctor):
+    def book_appt(self):
         pass
 
-#new_P = Patient('Alex', 'Tkachenko', 1000)
-#new_P.add_patient('Alex', 'Tkachenko', 1000)
-Staff('Brando Tye', 'Physiotherapist', 1004).remove_staff()
+
+    def delete_appt(self):
+        pass
+
+    def free_time(self):
+        pass
+
+    def schedule_gen (self, start_date, end_date):
+        #this will generate a csv file which will be available for filling in a schedule.
+        #Inputs are start date & end date. The opening and closing of doctors office will remain constant
+        #Open at 9AM and closes at 6PM
+        
+        #check that start date and end date are in the correct format
+
+        start_date_syntax = False
+        end_date_syntax = False
+
+        while start_date_syntax == False and end_date_syntax == False:
+            #format required is DD/MM/YYYY
+            
+            def date_syntax_checker (string_checks):
+
+                #1. check if string is correct length
+                #2. check if string is correct format
+                    #a.check the dashes are in the correct place
+                    #b.
+                #3. check if start date is before end date
+
+                #this checks that the string is the correct length
+                if len(string_checks) == 10:
+                    print("String is correct length")
+                else:
+                    print("String is not the correct length")
+                    return False   
+                
+
+                #break the string down into it's constituent dates & checks that it matches the format
+
+
+                split_string = string_checks.split("/")
+                if len(split_string[0]) == 2 and len(split_string[1]) == 2 and len(split_string[2]) == 4:
+                    print("The date provided matches the required format")
+                else:
+                    print("The date does not match the required format")
+                    return False
+                
+
+                
+                
