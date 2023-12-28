@@ -150,12 +150,21 @@ class Appointment():
 
 
                 split_string = string_checks.split("/")
+                #split the string based on the separator
+
                 if len(split_string[0]) == 2 and len(split_string[1]) == 2 and len(split_string[2]) == 4:
+                    #check if the dates are correctly structured by checking the breakdown of the string
                     print("The date provided matches the required format")
+                    return True
                 else:
                     print("The date does not match the required format")
                     return False
                 
+                #lets check that the start date is before the end date
+            if date_syntax_checker(start_date) == True:
+                start_date_syntax = True
+            if date_syntax_checker(end_date) == True:
+                end_date_syntax = True
 
                 
                 
