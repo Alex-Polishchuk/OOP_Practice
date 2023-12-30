@@ -151,7 +151,7 @@ class Appointment():
         date = "17-10-23"
 
         #list for time to be input, done in 15 minute increments w/ 1hour break
-        time_list = ["Header", 900, 915, 930, 945, 
+        time_list = [900, 915, 930, 945, 
                      1000, 1015, 1030, 1045, 
                      1100, 1115, 1130, 1145, 
                      1200, 1215, 1230, 1245, 
@@ -160,13 +160,13 @@ class Appointment():
                      1600, 1615, 1630, 1645, 
                      1700, 1715, 1730, 1745]
 
-        file_name = date + "_" + str(staff_ID) + ".csv"
+        df = pd.DataFrame(time_list)
+        df.columns = ['Time']
+        df["Patient ID"] = None
 
-        with open(file_name, 'w', newline='') as file:
-            writer = csv.writer(file)
-            writer.writerow(time_list[0])
-            writer.writerows(time_list[1:])
+        csv_file_path = "Appointment_scheduler\\" + "17-10-23" + "_" + str(staff_ID) + ".csv"
 
+        df.to_csv(csv_file_path, index=False)
 #newapt = Appointment("15/10/23", "17/10/2023").date_syntax_checker()
             
 nnewapt = Appointment.schedule_gen(91001)
