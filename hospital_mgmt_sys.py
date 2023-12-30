@@ -100,12 +100,11 @@ class Patient():
                 print("No match found in records")
 class Appointment():
 
-    def __init__(self, time_start, time_finish, date, staff_ID, patient_ID):
-        self.time_start = time_start
-        self.time_finish = time_finish
-        self.date = date
-        self.staff_ID = staff_ID
-        self.patient_ID = patient_ID
+    def __init__(self, start_date, end_date):
+
+        self.start_date = start_date
+        self.end_date = end_date
+
 
     def book_appt(self):
         pass
@@ -116,55 +115,58 @@ class Appointment():
 
     def free_time(self):
         pass
-
-    def schedule_gen (self, start_date, end_date):
-        #this will generate a csv file which will be available for filling in a schedule.
-        #Inputs are start date & end date. The opening and closing of doctors office will remain constant
-        #Open at 9AM and closes at 6PM
-        
-        #check that start date and end date are in the correct format
-
-        start_date_syntax = False
-        end_date_syntax = False
-
-        while start_date_syntax == False and end_date_syntax == False:
-            #format required is DD/MM/YYYY
             
-            def date_syntax_checker (string_checks):
+    def date_syntax_checker (self):
 
-                #1. check if string is correct length
-                #2. check if string is correct format
-                    #a.check the dashes are in the correct place
-                    #b.
-                #3. check if start date is before end date
+        def func_check(self):
+            #this checks that the string is the correct length
+            if len(self) == 10:
+                print("String is correct length")
+            else:
+                print("String is not the correct length")
+                return False 
+                    
+            split_string = self.split("/")
+            #split the string based on the separator
 
-                #this checks that the string is the correct length
-                if len(string_checks) == 10:
-                    print("String is correct length")
-                else:
-                    print("String is not the correct length")
-                    return False   
-                
+            if len(split_string[0]) == 2 and len(split_string[1]) == 2 and len(split_string[2]) == 4:
+                #check if the dates are correctly structured by checking the breakdown of the string
+                print("The date provided matches the required format")
+                return True
+            else:
+                print("The date does not match the required format")
+                return False
 
-                #break the string down into it's constituent dates & checks that it matches the format
+        start_check = func_check(self.start_date)
+        end_check = func_check(self.end_date)
 
+        if start_check and end_check == True:
+            #check if the strings returned true or false
+            print("The date is in the correct format")
+        else:
+            print("The dates are not in the correct format")
 
-                split_string = string_checks.split("/")
-                #split the string based on the separator
+    def schedule_gen(staff_ID):
+        #Inputs are start date & end date. The opening and closing of doctors office will remain constant
+        date = "17-10-23"
 
-                if len(split_string[0]) == 2 and len(split_string[1]) == 2 and len(split_string[2]) == 4:
-                    #check if the dates are correctly structured by checking the breakdown of the string
-                    print("The date provided matches the required format")
-                    return True
-                else:
-                    print("The date does not match the required format")
-                    return False
-                
-                #lets check that the start date is before the end date
-            if date_syntax_checker(start_date) == True:
-                start_date_syntax = True
-            if date_syntax_checker(end_date) == True:
-                end_date_syntax = True
+        #list for time to be input, done in 15 minute increments w/ 1hour break
+        time_list = ["Header", 900, 915, 930, 945, 
+                     1000, 1015, 1030, 1045, 
+                     1100, 1115, 1130, 1145, 
+                     1200, 1215, 1230, 1245, 
+                     1400, 1415, 1430, 1445, 
+                     1500, 1515, 1530, 1545, 
+                     1600, 1615, 1630, 1645, 
+                     1700, 1715, 1730, 1745]
 
-                
-                
+        file_name = date + "_" + str(staff_ID) + ".csv"
+
+        with open(file_name, 'w', newline='') as file:
+            writer = csv.writer(file)
+            writer.writerow(time_list[0])
+            writer.writerows(time_list[1:])
+
+#newapt = Appointment("15/10/23", "17/10/2023").date_syntax_checker()
+            
+nnewapt = Appointment.schedule_gen(91001)
