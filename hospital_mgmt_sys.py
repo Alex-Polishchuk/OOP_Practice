@@ -148,7 +148,7 @@ class Appointment():
 
     def schedule_gen(staff_ID):
         #Inputs are start date & end date. The opening and closing of doctors office will remain constant
-        date = "17-10-23"
+        date = "21-10-23"
 
         #list for time to be input, done in 15 minute increments w/ 1hour break
         time_list = [900, 915, 930, 945, 
@@ -164,7 +164,7 @@ class Appointment():
         df.columns = ['Time']
         df["Patient ID"] = None
 
-        csv_file_path = "Appointment_scheduler\\" + "17-10-23" + "_" + str(staff_ID) + ".csv"
+        csv_file_path = "Appointment_scheduler\\" + date + "_" + str(staff_ID) + ".csv"
 
         df.to_csv(csv_file_path, index=False)
 #newapt = Appointment("15/10/23", "17/10/2023").date_syntax_checker()
