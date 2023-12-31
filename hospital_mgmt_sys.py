@@ -106,9 +106,20 @@ class Appointment():
         self.end_date = end_date
 
 
-    def book_appt(self):
-        pass
+    def book_appt(date, staff_ID, patient_ID, time):
 
+        #Insert checker for the correct staff ID
+        file_path = "Appointment_scheduler\\" + str(date) + "_" + str(staff_ID) + ".csv"
+
+        with open (file_path, mode='r') as file:
+            reader_obj = csv.reader(file)
+
+            for row in reader_obj:
+                print(row[0], time)
+                if row[0] == time:
+                    row[1] = patient_ID
+                else:
+                    print("No available time")
 
     def delete_appt(self):
         pass
@@ -169,4 +180,6 @@ class Appointment():
         df.to_csv(csv_file_path, index=False)
 #newapt = Appointment("15/10/23", "17/10/2023").date_syntax_checker()
             
-nnewapt = Appointment.schedule_gen(91001)
+#nnewapt = Appointment.schedule_gen(91001)
+        
+appt_check = Appointment.book_appt("17-10-23", 91001, 1000, 900)
