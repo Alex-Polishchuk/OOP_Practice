@@ -111,15 +111,22 @@ class Appointment():
         #Insert checker for the correct staff ID
         file_path = "Appointment_scheduler\\" + str(date) + "_" + str(staff_ID) + ".csv"
 
-        with open (file_path, mode='r') as file:
-            reader_obj = csv.reader(file)
+        reader_obj = csv.reader(open(file_path))
+        lines = list(reader_obj)
+        for i in lines:
+            for j in lines[i]:
+                print(lines[i])
 
-            for row in reader_obj:
-                print(row[0], time)
-                if row[0] == time:
-                    row[1] = patient_ID
-                else:
-                    print("No available time")
+        for i in lines:
+            if int(lines[i][0]) == int(time):
+                lines[i][1] = patient_ID
+                print("Time found")
+            else:
+                print("No time found")
+
+        with open (file_path, 'w', newline='', encoding='utf-8') as file:
+            writer = csv.writer(file)
+            writer.writerows(lines)
 
     def delete_appt(self):
         pass
@@ -159,7 +166,7 @@ class Appointment():
 
     def schedule_gen(staff_ID):
         #Inputs are start date & end date. The opening and closing of doctors office will remain constant
-        date = "21-10-23"
+        date = "17-10-23"
 
         #list for time to be input, done in 15 minute increments w/ 1hour break
         time_list = [900, 915, 930, 945, 
