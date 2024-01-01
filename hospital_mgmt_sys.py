@@ -100,36 +100,41 @@ class Patient():
                 print("No match found in records")
 class Appointment():
 
-    def __init__(self, start_date, end_date):
+    def __init__(self, date, staff_ID, patient_ID, time):
 
-        self.start_date = start_date
-        self.end_date = end_date
+        self.staff_ID = staff_ID
+        self.patient_ID = patient_ID
+        self.time = time
+        self.date = date
 
 
-    def book_appt(date, staff_ID, patient_ID, time):
+    def book_appt(self):
 
-        #Insert checker for the correct staff ID
-        file_path = "Appointment_scheduler\\" + str(date) + "_" + str(staff_ID) + ".csv"
+        file_path = "Appointment_scheduler\\" + (self.date) + "_" + str(self.staff_ID) + ".csv"
 
-        reader_obj = csv.reader(open(file_path))
-        lines = list(reader_obj)
-        for i in lines:
-            for j in lines[i]:
-                print(lines[i])
+        #Read a pandas file
+        df = pd.read_csv(file_path)
+        
+        #Locate, within the time column where equal to time provided. Then in patient
+        #ID column put in the patient ID
+        df.loc[df["Time"]==self.time, "Patient ID"] = self.patient_ID
 
-        for i in lines:
-            if int(lines[i][0]) == int(time):
-                lines[i][1] = patient_ID
-                print("Time found")
-            else:
-                print("No time found")
+        #Save CSV filfe
+        df.to_csv(file_path, index=False)
 
-        with open (file_path, 'w', newline='', encoding='utf-8') as file:
-            writer = csv.writer(file)
-            writer.writerows(lines)
 
     def delete_appt(self):
-        pass
+        
+        file_path = "Appointment_scheduler\\" + (self.date) + "_" + str(self.staff_ID) + ".csv"
+
+        #Reading the file as a dataframe
+        df = pd.read_csv(file_path)
+
+        #Locate the column where the data shall be removed
+        df.loc[df["Time"]==self.time, "Patient ID"] = None
+
+        #Save CSV filfe
+        df.to_csv(file_path, index=False)
 
     def free_time(self):
         pass
@@ -189,4 +194,5 @@ class Appointment():
             
 #nnewapt = Appointment.schedule_gen(91001)
         
-appt_check = Appointment.book_appt("17-10-23", 91001, 1000, 900)
+appt_book = Appointment("17-10-23", 91001, 1000, 900).book_appt()
+appt_remove = Appointment("17-10-23", 91001, 1000, 900).delete_appt()
