@@ -1,6 +1,4 @@
 import pandas as pd
-from datetime import datetime
-import calendar
 import csv
 
 class Staff():
@@ -106,7 +104,6 @@ class Appointment():
         self.patient_ID = patient_ID
         self.time = time
         self.date = date
-
 
     def book_appt(self):
 
